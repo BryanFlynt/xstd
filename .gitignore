@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Eclipse Project files
+.project
+.cproject
+.settings
+
+# My commonly used build diretory
+build
