@@ -3,4 +3,5 @@
 #
 
 # List files to compile/test
-add_catch_test(radix)
+add_catch_test(algorithm)
+add_catch_test(functional)
