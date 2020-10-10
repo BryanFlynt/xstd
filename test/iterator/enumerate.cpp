@@ -14,8 +14,9 @@
 
 #include "xstd/detail/iterator/enumerate.hpp"
 
-#include <cstdint>
 #include <algorithm>
+#include <cstdint>
+#include <initializer_list>
 #include <vector>
 
 
@@ -106,8 +107,8 @@ TEST_CASE("Enumerated Iterators", "[default]") {
 	}
 
 	SECTION("C++17 Structured Binding from initializer_list","[default]"){
-
-		for(auto&& [i, val]: xstd::enumerate({0,1,2,3,4,5,6})){
+		std::initializer_list<int> ilist{0,1,2,3,4,5,6};
+		for(auto&& [i, val]: xstd::enumerate(ilist)){
 			REQUIRE(i == val);
 		}
 	}
