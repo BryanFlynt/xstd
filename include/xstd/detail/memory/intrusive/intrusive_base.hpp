@@ -5,12 +5,12 @@
  *      Author: bryan.flynt
  */
 
-#ifndef STDX_INTRUSIVE_BASE_
-#define STDX_INTRUSIVE_BASE_
+#ifndef INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_BASE_HPP_
+#define INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_BASE_HPP_
+
+#include "xstd/assert.hpp"
 
 #include <atomic>
-#include <cassert>
-#include <cstdlib>
 
 
 namespace xstd {
@@ -22,10 +22,10 @@ template <class Derived, typename Counter = std::atomic_uint32_t>
 class intrusive_base;
 
 template< typename Derived, typename Counter>
-inline void intrusive_ptr_add_ref(const intrusive_base<Derived,Counter>* p) noexcept;
+inline void intrusive_ptr_add_ref(intrusive_base<Derived,Counter>* const p) noexcept;
 
 template< typename Derived, typename Counter>
-inline void intrusive_ptr_release(const intrusive_base<Derived,Counter>* p) noexcept;
+inline void intrusive_ptr_release(intrusive_base<Derived,Counter>* const p) noexcept;
 
 /// Base class to add reference counting for usage by xstd::intrusive_ptr
 /**
@@ -68,36 +68,33 @@ protected:
     intrusive_base() noexcept: count_(0) {}
     intrusive_base(const intrusive_base&) noexcept : count_(0) {}
     intrusive_base& operator=(const intrusive_base&) noexcept { return *this; }
-    ~intrusive_base() noexcept {}
-    void swap(intrusive_base&) noexcept {}
 
-    friend void intrusive_ptr_add_ref<Derived,Counter>(const intrusive_base<Derived, Counter>* p) noexcept;
-    friend void intrusive_ptr_release<Derived,Counter>(const intrusive_base<Derived, Counter>* p) noexcept;
+    friend void intrusive_ptr_add_ref<Derived,Counter>(intrusive_base<Derived, Counter>* const p) noexcept;
+    friend void intrusive_ptr_release<Derived,Counter>(intrusive_base<Derived, Counter>* const p) noexcept;
 
 private:
-    mutable Counter count_;
+    using counter_type = Counter;
+
+    mutable counter_type count_;
 };
 
 /// Increment the counter by one reference
 template< typename Derived, typename Counter>
-inline void intrusive_ptr_add_ref(const intrusive_base<Derived,Counter>* p) noexcept{
-	assert( p != nullptr );
+inline void intrusive_ptr_add_ref(intrusive_base<Derived,Counter>* const p) noexcept {
+	ASSERT( p != nullptr );
 	++(p->count_);
 }
 
 /// Decrement the counter by one reference and delete if now zero
 template< typename Derived, typename Counter>
-inline void intrusive_ptr_release(const intrusive_base<Derived,Counter>* p) noexcept{
-	assert( p != nullptr );
+inline void intrusive_ptr_release(intrusive_base<Derived,Counter>* const p) noexcept {
+	ASSERT( p != nullptr );
 	--(p->count_);
     if( p->count_ == 0 ){
-    	auto derived_ptr = static_cast<Derived const*>(p);
-    	//derived_ptr->~Derived();
-        delete derived_ptr;
-        derived_ptr = nullptr;
+    	delete static_cast<Derived const*>(p);
     }
 }
 
 } /* namespace xstd */
 
-#endif /* STDX_INTRUSIVE_BASE_ */
+#endif /* INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_BASE_HPP_ */

@@ -5,10 +5,11 @@
  *      Author: bryan.flynt
  */
 
-#ifndef INTRUSIVE_PTR_HPP_
-#define INTRUSIVE_PTR_HPP_
+#ifndef INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_PTR_HPP_
+#define INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_PTR_HPP_
 
-#include <cassert>     // assert
+#include "xstd/assert.hpp"
+
 #include <cstddef>     // std::nullptr_t
 #include <functional>  // std::less, std::hash
 #include <type_traits> // std::remove_extent<T>
@@ -148,11 +149,11 @@ struct intrusive_ptr {
         this_type().swap(*this);
     }
 
-    void reset(T* rhs ){
+    void reset(T* rhs){
         this_type(rhs).swap(*this);
     }
 
-    void reset(T* rhs, bool add_ref ){
+    void reset(T* rhs, bool add_ref){
         this_type(rhs,add_ref).swap(*this);
     }
 
@@ -167,12 +168,12 @@ struct intrusive_ptr {
     }
 
     T& operator*() const noexcept{
-        assert( data_ptr_ != nullptr );
+        ASSERT( data_ptr_ != nullptr );
         return *data_ptr_;
     }
 
     T* operator->() const noexcept{
-        assert( data_ptr_ != nullptr );
+    	ASSERT( data_ptr_ != nullptr );
         return data_ptr_;
     }
 
@@ -286,4 +287,4 @@ struct hash<::xstd::intrusive_ptr<T>>{
 
 
 
-#endif /* INTRUSIVE_PTR_HPP_ */
+#endif /* INCLUDE_XSTD_DETAIL_MEMORY_INTRUSIVE_INTRUSIVE_PTR_HPP_ */

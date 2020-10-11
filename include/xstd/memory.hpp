@@ -13,6 +13,6 @@
 #include "xstd/detail/memory/allocator/allocator.hpp"
 #include "xstd/detail/memory/intrusive/intrusive_base.hpp"
 #include "xstd/detail/memory/intrusive/intrusive_ptr.hpp"
-#include "xstd/detail/memory/intrusive/reference_count.hpp"
+#include "xstd/detail/memory/intrusive/intrusive_derived.hpp"
 
 #endif /* MEMORY_HPP_ */

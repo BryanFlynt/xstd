@@ -1,39 +1,67 @@
 /*
- * test_intrusive.cpp
+ * intrusive_ptr.cpp
  *
- *  Created on: Apr 25, 2019
- *      Author: bryan.flynt
+ *  Created on: Oct 11, 2020
+ *      Author: bflynt
  */
+
 
 // Let Catch provide main():
 #define CATCH_CONFIG_MAIN
 #include "../../test/catch.hpp"
 
-#include "xstd/detail/memory/intrusive/intrusive_base.hpp"
 #include "xstd/detail/memory/intrusive/intrusive_ptr.hpp"
 
 //
 // Test Animal Class
+// The Animal class has the required function use_count()
+// to return the number of reference counts.
 //
-class Animal : public xstd::intrusive_base<Animal>  {
+class Animal {
 public:
-	Animal() : age_(-999){
+	Animal() : age_(-999), count_(0) {
 	}
-	Animal(const int value) : age_(value){
+	Animal(const int value) : age_(value), count_(0){
 	}
 	virtual ~Animal(){
 	}
 	virtual std::string name() const{
 		return "Animal";
 	}
+	std::size_t use_count() const noexcept {
+		return count_;
+	}
+
 	int age() const noexcept {
 		return age_;
 	}
 
+	friend void intrusive_ptr_add_ref(Animal* const p) noexcept;
+    friend void intrusive_ptr_release(Animal* const p) noexcept;
+
 protected:
+	int count_;
 	int age_;
 };
 
+//
+// The Animal class requires intrusive_ptr_add_ref
+// to increase the reference count.
+//
+inline void intrusive_ptr_add_ref(Animal* const p) noexcept{
+	++(p->count_);
+}
+
+//
+// The Animal class requires intrusive_ptr_release
+// to decrease the reference count.
+//
+inline void intrusive_ptr_release(Animal* const p) noexcept{
+	--(p->count_);
+    if( p->count_ == 0 ){
+    	delete p;
+    }
+}
 
 //
 // Dog is derived type to test runtime polymorphism
@@ -61,8 +89,7 @@ public:
 
 
 
-
-TEST_CASE("Intrusive Base", "[default]") {
+TEST_CASE("Intrusive Pointer", "[default]") {
 
 	SECTION("No Pointers") {
 		Animal a(3);

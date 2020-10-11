@@ -1,21 +1,22 @@
 /*
- * test_intrusive.cpp
+ * intrusive_derived.cpp
  *
- *  Created on: Apr 25, 2019
- *      Author: bryan.flynt
+ *  Created on: Oct 11, 2020
+ *      Author: bflynt
  */
+
 
 // Let Catch provide main():
 #define CATCH_CONFIG_MAIN
 #include "../../test/catch.hpp"
 
-#include "xstd/detail/memory/intrusive/intrusive_base.hpp"
+#include "xstd/detail/memory/intrusive/intrusive_derived.hpp"
 #include "xstd/detail/memory/intrusive/intrusive_ptr.hpp"
 
 //
 // Test Animal Class
 //
-class Animal : public xstd::intrusive_base<Animal>  {
+class Animal {
 public:
 	Animal() : age_(-999){
 	}
@@ -38,9 +39,9 @@ protected:
 //
 // Dog is derived type to test runtime polymorphism
 //
-class Dog : public Animal {
+class Dog : public xstd::intrusive_derived<Animal> {
 public:
-	Dog(const int value) : Animal(value){
+	Dog(const int value) : xstd::intrusive_derived<Animal>(value){
 	}
 	std::string name() const{
 		return "Dog";
@@ -50,9 +51,9 @@ public:
 //
 // Can is derived type to test runtime polymorphism
 //
-class Cat : public Animal {
+class Cat : public xstd::intrusive_derived<Animal> {
 public:
-	Cat(const int value) : Animal(value){
+	Cat(const int value) : xstd::intrusive_derived<Animal>(value){
 	}
 	std::string name() const{
 		return "Cat";
@@ -72,58 +73,18 @@ TEST_CASE("Intrusive Base", "[default]") {
 		REQUIRE( a.age() == 3 );
 		REQUIRE( b.age() == 3 );
 		REQUIRE( c.age() != 3 );
-		REQUIRE( a.use_count() == 0 );
-		REQUIRE( b.use_count() == 0 );
-		REQUIRE( c.use_count() == 0 );
 
 		c = a;
 		REQUIRE( a.age() == 3 );
 		REQUIRE( b.age() == 3 );
 		REQUIRE( c.age() == 3 );
-		REQUIRE( a.use_count() == 0 );
-		REQUIRE( b.use_count() == 0 );
-		REQUIRE( c.use_count() == 0 );
-	}
-
-	SECTION("Animal Pointers") {
-		xstd::intrusive_ptr<Animal> a = new Animal(3);
-		xstd::intrusive_ptr<Animal> b = a;
-		xstd::intrusive_ptr<Animal> c = nullptr;
-
-		REQUIRE( a->age() == 3 );
-		REQUIRE( b->age() == 3 );
-		REQUIRE( a.use_count() == 2 );
-		REQUIRE( b.use_count() == 2 );
-		REQUIRE( c.use_count() == 0 );
-
-		c = a;
-		REQUIRE( a->age() == 3 );
-		REQUIRE( b->age() == 3 );
-		REQUIRE( c->age() == 3 );
-		REQUIRE( a.use_count() == 3 );
-		REQUIRE( b.use_count() == 3 );
-		REQUIRE( c.use_count() == 3 );
-
-		a.reset();
-		REQUIRE( a.use_count() == 0 );
-		REQUIRE( b.use_count() == 2 );
-		REQUIRE( c.use_count() == 2 );
-
-		c.reset();
-		REQUIRE( a.use_count() == 0 );
-		REQUIRE( b.use_count() == 1 );
-		REQUIRE( c.use_count() == 0 );
-
-		b.reset();
-		REQUIRE( a.use_count() == 0 );
-		REQUIRE( b.use_count() == 0 );
-		REQUIRE( c.use_count() == 0 );
 	}
 
 	SECTION("Polymorphic Pointers") {
-		xstd::intrusive_ptr<Animal> a = new Dog(3);
-		xstd::intrusive_ptr<Animal> b = new Cat(5);
-		xstd::intrusive_ptr<Animal> c = nullptr;
+		using ref_counted_base = xstd::intrusive_derived<Animal>;
+		xstd::intrusive_ptr<ref_counted_base> a = new Dog(3);
+		xstd::intrusive_ptr<ref_counted_base> b = new Cat(5);
+		xstd::intrusive_ptr<ref_counted_base> c = nullptr;
 
 		REQUIRE( a->age() == 3 );
 		REQUIRE( b->age() == 5 );
@@ -160,5 +121,7 @@ TEST_CASE("Intrusive Base", "[default]") {
 		REQUIRE( c.use_count() == 0 );
 	}
 }
+
+
 
 
