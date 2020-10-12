@@ -8,8 +8,8 @@
 #ifndef INCLUDE_XSTD_ITERATOR_RANGE_HPP_
 #define INCLUDE_XSTD_ITERATOR_RANGE_HPP_
 
+#include "xstd/assert.hpp"
 
-#include <cassert>
 #include <cstddef>  // std::size_t, std::ptrdiff_t;
 #include <iterator> // std::random_access_iterator_tag
 
@@ -111,7 +111,7 @@ struct range_iterator {
 	// ====================================================
 
 	friend bool operator==(const range_iterator& x, const range_iterator& y) {
-		assert(x.step_ == y.step_);
+		ASSERT(x.step_ == y.step_);
 		return x.step_ > 0 ? (y.value_ < x.value_) || (y.value_ == x.value_)
 				: (x.value_ < y.value_);
 	}
@@ -125,7 +125,7 @@ struct range_iterator {
 	}
 
 	friend difference_type operator-(const range_iterator& x, const range_iterator& y) {
-		assert(x.step_ == y.step_);
+		ASSERT(x.step_ == y.step_);
 		return (x.value_ - y.value_) / x.step_;
 	}
 

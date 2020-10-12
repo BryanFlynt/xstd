@@ -43,4 +43,5 @@ add_subdirectory(iterator)
 add_subdirectory(memory)
 add_subdirectory(tuple)
 add_subdirectory(type_traits)
+add_subdirectory(utility)
 

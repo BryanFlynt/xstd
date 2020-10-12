@@ -8,6 +8,7 @@
 #ifndef INCLUDE_XSTD_TUPLE_ALGORITHM_HPP_
 #define INCLUDE_XSTD_TUPLE_ALGORITHM_HPP_
 
+#include "xstd/assert.hpp"
 
 #include <cstddef>     // std::size_t
 #include <algorithm>   // std::min, std::max
@@ -333,7 +334,7 @@ count_if(Tuple&& t, UnaryPredicate p) noexcept {
 template<typename T1, typename T2, typename BinaryPredicate>
 constexpr std::size_t
 count_if(T1&& t1, T2&& t2, BinaryPredicate p) noexcept {
-    static_assert(std::tuple_size<std::remove_reference_t<T1>>::value ==
+	STATIC_ASSERT(std::tuple_size<std::remove_reference_t<T1>>::value ==
                   std::tuple_size<std::remove_reference_t<T2>>::value,
                   "Tuples must be same length");
     std::size_t count = 0;
@@ -387,7 +388,7 @@ find_if(Tuple&& t, UnaryPredicate p) noexcept {
 template<typename T1, typename T2, typename BinaryPredicate>
 constexpr std::size_t
 find_if(T1&& t1, T2&& t2, BinaryPredicate p) noexcept {
-	static_assert(std::tuple_size<std::remove_reference_t<T1>>::value ==
+	STATIC_ASSERT(std::tuple_size<std::remove_reference_t<T1>>::value ==
 			      std::tuple_size<std::remove_reference_t<T2>>::value,
 				  "Tuples must be same length");
 	std::size_t index = std::tuple_size<std::remove_reference_t<T1>>::value;

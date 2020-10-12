@@ -16,26 +16,43 @@
  * compile time.
  */
 
+//
+// Use the C standard assert
+//
+#if defined(XSTD_USE_CASSERT)
+#include <cassert>
+#define ASSERT(EXP) assert(EXP);
+
+//
+// Use the xstd assert
+//
+#else
+
 
 #if !defined(NDEBUG)
+#include "xstd/detail/config/current.hpp"
 #include <cstdlib>   // std::exit(EXIT_FAILURE)
 #include <iostream>  // std::cerr
 #define ASSERT(EXP)                                                          \
 		do {                                                                 \
 			if (!(EXP)) {                                                    \
 				std::cerr << std::endl;                                      \
-				std::cerr << "***** Failed Assertion *****" << std::endl;    \
-				std::cerr << "Failed expression: " << # EXP << std::endl;    \
-				std::cerr << "File: " << __FILE__ << std::endl;              \
-				std::cerr << "Line: " << __LINE__ << std::endl;              \
+				std::cerr << "***** Failed Assertion *****"    << std::endl; \
+				std::cerr << "Failed expression: " << # EXP    << std::endl; \
+				std::cerr << "File: " << XSTD_CURRENT_FILE     << std::endl; \
+				std::cerr << "Func: " << XSTD_CURRENT_FUNCTION << std::endl; \
+				std::cerr << "Line: " << XSTD_CURRENT_LINE     << std::endl; \
 				std::cerr << std::endl;                                      \
 				std::exit(EXIT_FAILURE);                                     \
 			}                                                                \
-		} while (0)
+		} while (0);
 
 #else
 #define ASSERT(EXP)
 #endif
+
+#endif // if defined(XSTD_USE_CASSERT)
+
 
 // ------------------------------------------------------------------- //
 //                           STATIC_ASSERT                             //

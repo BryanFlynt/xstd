@@ -9,7 +9,9 @@
 #define INCLUDE_XSTD_CONFIG_HPP_
 
 #include "xstd/detail/config/compiler.hpp"
+#include "xstd/detail/config/current.hpp"
 #include "xstd/detail/config/inline.hpp"
+#include "xstd/detail/config/null_macros.hpp"
 #include "xstd/detail/config/platform.hpp"
 #include "xstd/detail/config/restrict.hpp"
 
