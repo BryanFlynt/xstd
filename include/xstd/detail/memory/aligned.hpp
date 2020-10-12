@@ -154,7 +154,7 @@ template<typename ReturnType = void*>
 inline
 ReturnType
 aligned_malloc(std::size_t alignment, std::size_t size) noexcept {
-	static_assert( std::is_pointer<ReturnType>::value );
+	STATIC_ASSERT( std::is_pointer<ReturnType>::value );
 	ASSERT( alignment > 0 );
     ASSERT((alignment % 2) == 0 );
     ASSERT((alignment % sizeof(void*)) == 0 );
@@ -185,7 +185,7 @@ template<typename ReturnType = void*>
 inline
 ReturnType
 aligned_malloc(std::size_t alignment, std::size_t size){
-	static_assert( std::is_pointer<ReturnType>::value );
+	STATIC_ASSERT( std::is_pointer<ReturnType>::value );
 	return static_cast<ReturnType>(::aligned_alloc(alignment,size));
 }
 

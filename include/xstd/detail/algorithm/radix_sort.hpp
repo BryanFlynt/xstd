@@ -8,14 +8,14 @@
 #ifndef INCLUDE_XSTD_ALGORITHM_RADIX_SORT_HPP_
 #define INCLUDE_XSTD_ALGORITHM_RADIX_SORT_HPP_
 
+#include "xstd/assert.hpp"
+
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <functional>
 #include <iterator>
 #include <list>
 #include <type_traits>
-
 
 
 namespace xstd{
@@ -27,8 +27,8 @@ void radix_sort(RandomIt first, RandomIt last){
 	using value_type = typename std::iterator_traits<RandomIt>::value_type;
 
 	// Assert values are Integers and all values are Positive
-	static_assert(std::is_integral<value_type>::value, "Integral required");
-	assert( std::all_of(first,last,[](value_type val){return val >= value_type(0);}) );
+	STATIC_ASSERT(std::is_integral<value_type>::value, "Integral required");
+	ASSERT( std::all_of(first,last,[](value_type val){return val >= value_type(0);}) );
 
 	const size_type one = 1;
 	const size_type ten = 10;

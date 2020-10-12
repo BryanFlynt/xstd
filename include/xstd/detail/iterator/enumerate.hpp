@@ -12,7 +12,6 @@
 #include "xstd/detail/type_traits/container_checks.hpp" // xstd::has_begin_end
 
 
-#include <cassert>
 #include <initializer_list>
 #include <iterator> // std::iterator_traits
 #include <utility>  // std::pair
