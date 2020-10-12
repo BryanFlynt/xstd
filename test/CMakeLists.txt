@@ -38,6 +38,7 @@ endfunction()
 
 
 add_subdirectory(algorithm)
+add_subdirectory(chrono)
 add_subdirectory(functional)
 add_subdirectory(iterator)
 add_subdirectory(memory)
