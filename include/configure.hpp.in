@@ -1,0 +1,38 @@
+/*
+ * configure.hpp
+ *
+ *  Created on: Oct 13, 2020
+ *      Author: bflynt
+ */
+
+#ifndef INCLUDE_CONFIGURE_HPP_IN_
+#define INCLUDE_CONFIGURE_HPP_IN_
+
+// XSTD_USE_ASSERT
+//
+// Define to switch on xstd ASSERT 
+// instead of C assert when 
+// NDEBUG is not defined.
+// 
+#cmakedefine XSTD_USE_ASSERT
+
+// XSTD_USE_PROFILE
+//
+// Define to switch on profiling where used
+// If this varibale is not set then the macro
+// will expand into no operations.
+//
+#cmakedefine XSTD_USE_PROFILE
+
+
+// XSTD_USE_TRACER
+//
+// Define to switch on tracing where used
+// If this varibale is not set then the macro
+// will expand into no operations.
+//
+#cmakedefine XSTD_USE_TRACER
+
+
+
+#endif /* INCLUDE_CONFIGURE_HPP_IN_ */

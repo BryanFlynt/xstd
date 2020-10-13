@@ -8,7 +8,17 @@
 #ifndef PROFILER_PROFILER_HPP_
 #define PROFILER_PROFILER_HPP_
 
+// Detect if we should compile/skip
+#include "xstd/configure.hpp"
 
+/** \file profiler.hpp
+ * Implementation of Profiler tools to time program execution.
+ *
+ * The Profiler tools can be used to time program execution by
+ * timing entry and exit from each method, function, etc. The
+ * Profiler has built in mechanism for accumulating inclusive
+ * and exclusive times.
+ */
 #if defined( XSTD_USE_PROFILE )
 
 #include "xstd/detail/config/current.hpp"
@@ -22,7 +32,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-
 
 namespace xstd {
 

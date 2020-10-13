@@ -115,6 +115,21 @@ foreach(i ${CMAKE_CXX_COMPILE_FEATURES})
 	message(VERBOSE "${i}")
 endforeach()
 
+#
+#---------------------------------------------------------------------
+# Build Type Flag Configuration
+#---------------------------------------------------------------------
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(XSTD_USE_ASSERT  1)
+	set(XSTD_USE_PROFILE 1)
+	set(XSTD_USE_TRACER  1)
+endif()
+message(VERBOSE "")
+message(VERBOSE "----------------- Configuration Settings -------------------")
+message(VERBOSE "XSTD_USE_PROFILE = ${XSTD_USE_PROFILE}")
+message(VERBOSE "XSTD_USE_TRACER  = ${XSTD_USE_TRACER}")
+message(VERBOSE "XSTD_USE_CASSERT = ${XSTD_USE_CASSERT}")
+	
 #---------------------------------------------------------------------
 # 
 #---------------------------------------------------------------------

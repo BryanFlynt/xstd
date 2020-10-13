@@ -17,8 +17,8 @@ function(add_catch_test test_name)
 	target_include_directories(${test_target} 
 		PRIVATE 
 			${CATCH_INCLUDE_DIR}
-			$<BUILD_INTERFACE:${MY_PROJECT_INCDIR}>
-    		$<INSTALL_INTERFACE:${MY_INSTALL_INCDIR}>
+			$<BUILD_INTERFACE:${MY_PROJECT_INCDIR}> # Pick up unisntalled library
+    		$<BUILD_INTERFACE:${MY_INSTALL_INCDIR}> # Pick up processed configure.hpp
     )
    	target_link_libraries(${test_target}
 		PRIVATE
@@ -40,6 +40,7 @@ endfunction()
 add_subdirectory(algorithm)
 add_subdirectory(array)
 add_subdirectory(chrono)
+#add_subdirectory(fstream)
 add_subdirectory(functional)
 add_subdirectory(iostream)
 add_subdirectory(iterator)

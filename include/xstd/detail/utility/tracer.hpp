@@ -8,6 +8,8 @@
 #ifndef XSTD_TRACER_HPP_
 #define XSTD_TRACER_HPP_
 
+// Detect if we should compile/skip
+#include "xstd/configure.hpp"
 
 /** \file tracer.hpp
  * Implementation of Tracer tools to trace program execution.
@@ -18,7 +20,7 @@
  * builds a macro is used to only insert Tracer construction
  * when TRACER_ON is defined.
  */
-#if defined( USE_XSTD_TRACER )
+#if defined( XSTD_USE_TRACER )
 
 #include <iostream>
 #include <string>
@@ -129,7 +131,7 @@ std::size_t& Tracer::indent(){
 #define TRACER(msg) xstd::Tracer local_scope_tracer(msg);
 #endif
 
-#else // #ifdef USE_XSTD_TRACER
+#else // #ifdef XSTD_USE_TRACER
 
 /**
  * Macro to ignore Tracer construction
@@ -138,7 +140,7 @@ std::size_t& Tracer::indent(){
 #define TRACER(msg)
 #endif
 
-#endif // #ifdef USE_XSTD_TRACER
+#endif // #ifdef XSTD_USE_TRACER
 
 
 #endif /* XSTD_TRACER_HPP_ */

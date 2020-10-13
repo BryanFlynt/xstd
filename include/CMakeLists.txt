@@ -1,3 +1,25 @@
+
+
+#
+################################################################
+#              Create "configure.hpp" File
+################################################################
+# 
+# Use CMake to process "configure.hpp.in"
+#
+# include/configure.hpp.in --> build/include/xstd/configure.hpp
+#
+# Notice, since we processed it directly into the install include
+# directory then we need to include that directory when building 
+# the tests that use it. The library user does not need to worry
+# since they will be using the installed library anyway. 
+#
+configure_file(
+	"${MY_PROJECT_INCDIR}/configure.hpp.in"
+	"${MY_INSTALL_INCDIR}/xstd/configure.hpp"
+)   
+               
+
 #
 ################################################################
 #              Making XSTD Library Exportable
@@ -49,7 +71,7 @@ target_include_directories(${PROJECT_NAME}
 #
 target_compile_features(${PROJECT_NAME} 
 	INTERFACE 
-		cxx_std_17
+		cxx_std_20
 )
 
 install(
@@ -113,5 +135,5 @@ install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
 #
 # Copy all header files to the installation folder
 #
-install(DIRECTORY ${MY_PROJECT_INCDIR} DESTINATION ${MY_INSTALL_INCDIR})
+install(DIRECTORY ${MY_PROJECT_INCDIR} DESTINATION ${MY_INSTALL_PREFIX})
 
