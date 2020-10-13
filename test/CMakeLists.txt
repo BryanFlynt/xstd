@@ -38,11 +38,15 @@ endfunction()
 
 
 add_subdirectory(algorithm)
+add_subdirectory(array)
 add_subdirectory(chrono)
 add_subdirectory(functional)
+add_subdirectory(iostream)
 add_subdirectory(iterator)
 add_subdirectory(memory)
+add_subdirectory(string)
 add_subdirectory(tuple)
 add_subdirectory(type_traits)
 add_subdirectory(utility)
+add_subdirectory(vector)
 
