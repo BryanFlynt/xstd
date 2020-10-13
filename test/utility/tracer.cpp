@@ -6,7 +6,7 @@
  */
 
 
-#define USE_XSTD_TRACER // Force Tracer to Insert
+#define XSTD_USE_TRACER // Force Tracer to Insert
 #include "xstd/detail/config/current.hpp"
 #include "xstd/detail/utility/tracer.hpp"
 

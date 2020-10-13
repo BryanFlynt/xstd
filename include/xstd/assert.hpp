@@ -7,6 +7,8 @@
 #ifndef STDX_ASSERT_H_
 #define STDX_ASSERT_H_
 
+#include "xstd/configure.hpp"
+
 /*
  * Macros for:
  * ASSERT - Assert condition evaluates to true at
@@ -16,18 +18,7 @@
  * compile time.
  */
 
-//
-// Use the C standard assert
-//
-#if defined(XSTD_USE_CASSERT)
-#include <cassert>
-#define ASSERT(EXP) assert(EXP);
-
-//
-// Use the xstd assert
-//
-#else
-
+#if defined(XSTD_USE_ASSERT)
 
 #if !defined(NDEBUG)
 #include "xstd/detail/config/current.hpp"
@@ -47,11 +38,17 @@
 			}                                                                \
 		} while (0);
 
-#else
+#else // #if !defined(NDEBUG)
 #define ASSERT(EXP)
-#endif
 
-#endif // if defined(XSTD_USE_CASSERT)
+#endif //#if !defined(NDEBUG)
+
+#else // if defined(XSTD_USE_ASSERT)
+
+#include <cassert>
+#define ASSERT(EXP) assert(EXP);
+
+#endif // if defined(XSTD_USE_ASSERT)
 
 
 // ------------------------------------------------------------------- //
