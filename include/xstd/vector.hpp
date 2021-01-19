@@ -8,7 +8,7 @@
 #ifndef INCLUDE_XSTD_VECTOR_HPP_
 #define INCLUDE_XSTD_VECTOR_HPP_
 
-
+#include "xstd/detail/vector/multi_indexer.hpp"
 #include "xstd/detail/vector/vector_math.hpp"
 
 
