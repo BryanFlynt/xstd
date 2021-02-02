@@ -8,9 +8,9 @@
 
 
 
-// Let Catch provide main():
-#define CATCH_CONFIG_MAIN
-#include "../../test/catch.hpp"
+
+
+#include "catch.hpp"
 
 #include "xstd/detail/memory/aligned.hpp"
 #include "xstd/detail/memory/allocator/aligned_allocator.hpp"

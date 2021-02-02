@@ -5,9 +5,9 @@
  *      Author: bflynt
  */
 
-// Let Catch provide main():
-#define CATCH_CONFIG_MAIN
-#include "../../test/catch.hpp"
+
+
+#include "catch.hpp"
 
 #include "xstd/detail/set/intersection.hpp"
 

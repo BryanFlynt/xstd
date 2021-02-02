@@ -6,9 +6,9 @@
  */
 
 
-// Let Catch provide main():
-#define CATCH_CONFIG_MAIN
-#include "../../test/catch.hpp"
+
+
+#include "catch.hpp"
 
 #include "xstd/detail/memory/intrusive/intrusive_derived.hpp"
 #include "xstd/detail/memory/intrusive/intrusive_ptr.hpp"

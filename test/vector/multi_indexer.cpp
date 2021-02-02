@@ -5,13 +5,13 @@
  * \copyright  Copyright (C) 2021 Bryan Flynt - All Rights Reserved
  */
 
-// Let Catch provide main():
-#define CATCH_CONFIG_MAIN
-#include "../../test/catch.hpp"
+
+
+#include "catch.hpp"
 
 #include "xstd/detail/vector/multi_indexer.hpp"
 
-
+#include <iostream>
 
 TEST_CASE("MultiIndexer", "[default]") {
 	using namespace xstd;

@@ -6,9 +6,7 @@
  */
 
 
-// Let Catch provide main():
-#define CATCH_CONFIG_MAIN
-#include "../../test/catch.hpp"
+#include "catch.hpp"
 
 #include "xstd/detail/algorithm/radix_sort.hpp"
 
