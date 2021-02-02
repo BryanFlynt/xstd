@@ -34,6 +34,21 @@ struct empty_init_t {
  * optimization.  Both non-empty and empty class use
  * the same interface which frees the programmer from
  * needing to know if the type is empty.
+ * 
+ * If the base type is empty the empty_value wrapper
+ * will inherit from it thereby taking advantage of the 
+ * empty base class optimization.
+ * 
+ * If the base class is not empty the empty_value 
+ * wrapper will encapsulate a member of the type. 
+ *
+ * In both cases the interface the derived type
+ * accesses the methods of the base class remain 
+ * the same.
+ * 
+ * This frees the developer from needing to know 
+ * if a base class is empty or contains data.
+ *  
  *
  * Example of use:
  * \code{.cpp}
