@@ -1,8 +1,6 @@
 
 #include "xstd/detail/vector/bounded_vector.hpp"
 
-#include <iostream>
-#include <typeinfo>
 #include <vector>
 
 #include "catch.hpp"
@@ -20,24 +18,24 @@ TEST_CASE("Static Vector", "[default]") {
         REQUIRE(vec == svec);
     }
 
-    // SECTION("Size and Value [Constructor]") {
-    //     vector<value_type> vec(4, 2.0);
-    //     bounded_vector<value_type, N> svec(4, 2.0);
-    //     REQUIRE(vec == svec);
-    // }
+    SECTION("Size and Value [Constructor]") {
+        vector<value_type> vec(4, 2.0);
+        bounded_vector<value_type, N> svec(4, 2.0);
+        REQUIRE(vec == svec);
+    }
 
-    // SECTION("Iterator [Constructor]") {
-    //     vector<value_type> vec(4, 2.0);
-    //     bounded_vector<value_type, N> svec(vec.begin(), vec.end());
-    //     REQUIRE(vec == svec);
-    // }
+    SECTION("Iterator [Constructor]") {
+        vector<value_type> vec(4, 2.0);
+        bounded_vector<value_type, N> svec(vec.begin(), vec.end());
+        REQUIRE(vec == svec);
+    }
 
-    // SECTION("std::vector [Constructor]") {
-    //     vector<value_type> vec(4, 2.0);
-    //     bounded_vector<value_type, N> svec(vec);
-    //     bounded_vector<value_type, N> xvec(svec);
-    //     REQUIRE(vec == xvec);
-    // }
+    SECTION("std::vector [Constructor]") {
+        vector<value_type> vec(4, 2.0);
+        bounded_vector<value_type, N> svec(vec);
+        bounded_vector<value_type, N> xvec(svec);
+        REQUIRE(vec == xvec);
+    }
 
     // SECTION("Move [5]") {
     //     vector<value_type> vec(4, 2.0);
