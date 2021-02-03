@@ -252,7 +252,7 @@ constexpr bounded_vector<T, N, I>::bounded_vector(const bounded_vector& other) {
 
 template <class T, std::size_t N, bool I>
 constexpr bounded_vector<T, N, I>::bounded_vector(bounded_vector&& other) noexcept(std::is_nothrow_move_constructible<value_type>::value) {
-    this->swap(other);
+    *this = std::move(other); // Forward to move assignment
 }
 
 template <class T, std::size_t N, bool I>
@@ -279,7 +279,7 @@ constexpr bounded_vector<T, N, I>& bounded_vector<T, N, I>::operator=(const boun
 
 template <class T, std::size_t N, bool I>
 constexpr bounded_vector<T, N, I>& bounded_vector<T, N, I>::operator=(bounded_vector&& other) noexcept(std::is_nothrow_move_assignable<value_type>::value) {
-    assign(other.begin(), other.end());
+    this->swap(other);
     return *this;
 }
 

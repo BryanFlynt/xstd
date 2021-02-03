@@ -37,6 +37,8 @@ TEST_CASE("Static Vector", "[default]") {
         REQUIRE(vec == xvec);
     }
 
+    // This trips up Catch2 REQUIRE test
+    // 
     // SECTION("Move [Constructor]") {
     //     vector<value_type> vec(4, 2.0);
     //     bounded_vector<value_type, N> svec( bounded_vector<value_type, N>(vec) );
