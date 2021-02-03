@@ -37,12 +37,12 @@ TEST_CASE("Static Vector", "[default]") {
         REQUIRE(vec == xvec);
     }
 
-    SECTION("Move [5]") {
-        vector<value_type> vec(4, 2.0);
-        bounded_vector<value_type, N> svec(vec);
-        bounded_vector<value_type, N> xvec(std::move(svec));
-        REQUIRE(vec == xvec);
-    }
+    // SECTION("Move [Constructor]") {
+    //     vector<value_type> vec(4, 2.0);
+    //     bounded_vector<value_type, N> svec(vec);
+    //     bounded_vector<value_type, N> xvec(std::move(svec));
+    //     REQUIRE(vec == xvec);
+    // }
 
     // SECTION("initializer_list [Constructor]") {
     //     vector<value_type> vec({3, 4, 5, 6});
@@ -461,19 +461,19 @@ TEST_CASE("Static Vector", "[default]") {
     //     REQUIRE(vb == b);
     // }
 
-    // SECTION("swap(other) different size [Modifiers]") {
-    //     vector<value_type> va = {2, 3, 4};
-    //     vector<value_type> vb = {4, 5};
+    SECTION("swap(other) different size [Modifiers]") {
+        vector<value_type> va = {2, 3, 4};
+        vector<value_type> vb = {4, 5};
 
-    //     bounded_vector<value_type, N> a(va);
-    //     bounded_vector<value_type, N> b(vb);
+        bounded_vector<value_type, N> a(va);
+        bounded_vector<value_type, N> b(vb);
 
-    //     va.swap(vb);
-    //     a.swap(b);
+        va.swap(vb);
+        a.swap(b);
 
-    //     REQUIRE(va == a);
-    //     REQUIRE(vb == b);
-    // }
+        REQUIRE(va == a);
+        REQUIRE(vb == b);
+    }
 
     // SECTION("swap(other<N+1>) same size [Modifiers]") {
     //     vector<value_type> va = {2, 3, 4, 0};
