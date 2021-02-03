@@ -1,5 +1,5 @@
 /*
- * empty_type.cpp
+ * optimize_empty_base.cpp
  *
  *  Created on: Apr 14, 2020
  *      Author: bflynt
@@ -11,7 +11,7 @@
 #include "catch.hpp"
 
 
-#include "xstd/detail/type_traits/empty_value.hpp"
+#include "xstd/detail/type_traits/optimize_empty_base.hpp"
 
 class EmptyBase {
 public:
@@ -38,19 +38,19 @@ private:
 
 
 template<typename BASE>
-class Parent : public xstd::empty_value<BASE> {
+class Parent : public xstd::optimize_empty_base<BASE> {
 public:
 
 	Parent()
-		: xstd::empty_value<BASE>(xstd::empty_init_t()){
+		: xstd::optimize_empty_base<BASE>(xstd::empty_init_t()){
 	}
 
 	const BASE& base() const {
-		return xstd::empty_value<BASE>::get();
+		return xstd::optimize_empty_base<BASE>::get();
 	}
 
 	BASE& base() {
-		return xstd::empty_value<BASE>::get();
+		return xstd::optimize_empty_base<BASE>::get();
 	}
 };
 

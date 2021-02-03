@@ -5,3 +5,4 @@
 # List files to compile/test
 add_catch_test(multi_indexer)
 add_catch_test(vector_math)
+add_catch_test(bounded_vector)

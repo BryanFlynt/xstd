@@ -9,7 +9,7 @@
 #define INCLUDE_XSTD_TYPE_TRAITS_HPP_
 
 
-#include "xstd/detail/type_traits/empty_value.hpp"
+#include "xstd/detail/type_traits/optimize_empty_base.hpp"
 #include "xstd/detail/type_traits/container_checks.hpp"
 #include "xstd/detail/type_traits/type.hpp"
 
