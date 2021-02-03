@@ -9,6 +9,6 @@
 #define INCLUDE_XSTD_ARRAY_HPP_
 
 #include "xstd/detail/array/array_math.hpp"
-#include "xstd/detail/array/carray.hpp"
+#include "xstd/detail/array/const_array.hpp"
 
 #endif /* INCLUDE_XSTD_ARRAY_HPP_ */
