@@ -40,9 +40,9 @@ class bounded_vector {
     using allocator_type = std::allocator<T>;
     using allocator_traits = std::allocator_traits<allocator_type>;
     using size_type = typename allocator_traits::size_type;
-    using value_type = typename allocator_traits::value_type;
-    using pointer = typename allocator_traits::pointer;
-    using const_pointer = typename allocator_traits::const_pointer;
+    using value_type = T;
+    using pointer = value_type*;
+    using const_pointer = const value_type*;
     using reference = value_type&;
     using const_reference = const value_type&;
     using difference_type = typename allocator_traits::difference_type;
