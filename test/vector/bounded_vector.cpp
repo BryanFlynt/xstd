@@ -37,12 +37,12 @@ TEST_CASE("Static Vector", "[default]") {
         REQUIRE(vec == xvec);
     }
 
-    // SECTION("Move [5]") {
-    //     vector<value_type> vec(4, 2.0);
-    //     bounded_vector<value_type, N> svec(vec);
-    //     bounded_vector<value_type, N> xvec(std::move(svec));
-    //     REQUIRE(vec == xvec);
-    // }
+    SECTION("Move [5]") {
+        vector<value_type> vec(4, 2.0);
+        bounded_vector<value_type, N> svec(vec);
+        bounded_vector<value_type, N> xvec(std::move(svec));
+        REQUIRE(vec == xvec);
+    }
 
     // SECTION("initializer_list [Constructor]") {
     //     vector<value_type> vec({3, 4, 5, 6});
