@@ -159,177 +159,177 @@ TEST_CASE("Static Vector", "[default]") {
         REQUIRE(true);
     }
 
-    SECTION("clear() [Modifiers]") {
-        bounded_vector<value_type, N> svec = {2, 3, 4, 5};
-        REQUIRE(not svec.empty());
+    // SECTION("clear() [Modifiers]") {
+    //     bounded_vector<value_type, N> svec = {2, 3, 4, 5};
+    //     REQUIRE(not svec.empty());
 
-        svec.clear();
-        REQUIRE(svec.empty());
-    }
+    //     svec.clear();
+    //     REQUIRE(svec.empty());
+    // }
 
-    SECTION("Insert at front with value copy [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at front with value copy [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        value_type value = 7.0;
-        auto vit = vec.insert(vec.begin(), value);
-        auto sit = svec.insert(svec.begin(), value);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     value_type value = 7.0;
+    //     auto vit = vec.insert(vec.begin(), value);
+    //     auto sit = svec.insert(svec.begin(), value);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at front with &value inside [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at front with &value inside [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), vec[1]);
-        auto sit = svec.insert(svec.begin(), svec[1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), vec[1]);
+    //     auto sit = svec.insert(svec.begin(), svec[1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at front with &value at pos [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at front with &value at pos [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin() + 1, vec[1]);
-        auto sit = svec.insert(svec.begin() + 1, svec[1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin() + 1, vec[1]);
+    //     auto sit = svec.insert(svec.begin() + 1, svec[1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at front with &value at end()-1 [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at front with &value at end()-1 [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), vec[vec.size() - 1]);
-        auto sit = svec.insert(svec.begin(), svec[svec.size() - 1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), vec[vec.size() - 1]);
+    //     auto sit = svec.insert(svec.begin(), svec[svec.size() - 1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at front with value move [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at front with value move [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), 7.0);
-        auto sit = svec.insert(svec.begin(), 7.0);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), 7.0);
+    //     auto sit = svec.insert(svec.begin(), 7.0);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at back with value copy [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at back with value copy [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        value_type value = 7.0;
-        auto vit = vec.insert(vec.end(), value);
-        auto sit = svec.insert(svec.end(), value);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     value_type value = 7.0;
+    //     auto vit = vec.insert(vec.end(), value);
+    //     auto sit = svec.insert(svec.end(), value);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("Insert at back with value move [Modifiers]") {
-        vector<value_type> vec = {2, 3, 4};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("Insert at back with value move [Modifiers]") {
+    //     vector<value_type> vec = {2, 3, 4};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.end(), 7.0);
-        auto sit = svec.insert(svec.end(), 7.0);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.end(), 7.0);
+    //     auto sit = svec.insert(svec.end(), 7.0);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(vec.begin(), 2, value) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(vec.begin(), 2, value) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        value_type value = 7.0;
-        auto vit = vec.insert(vec.begin(), 2, value);
-        auto sit = svec.insert(svec.begin(), 2, value);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     value_type value = 7.0;
+    //     auto vit = vec.insert(vec.begin(), 2, value);
+    //     auto sit = svec.insert(svec.begin(), 2, value);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(vec.begin(), 2, vec[1]) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(vec.begin(), 2, vec[1]) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), 2, vec[1]);
-        auto sit = svec.insert(svec.begin(), 2, svec[1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), 2, vec[1]);
+    //     auto sit = svec.insert(svec.begin(), 2, svec[1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(begin() + 1, 2, vec[vec.size() - 1]) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(begin() + 1, 2, vec[vec.size() - 1]) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin() + 1, 2, vec[1]);
-        auto sit = svec.insert(svec.begin() + 1, 2, svec[1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin() + 1, 2, vec[1]);
+    //     auto sit = svec.insert(svec.begin() + 1, 2, svec[1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(begin(), 2, vec[vec.size() - 1]) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(begin(), 2, vec[vec.size() - 1]) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), 2, vec[vec.size() - 1]);
-        auto sit = svec.insert(svec.begin(), 2, svec[svec.size() - 1]);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), 2, vec[vec.size() - 1]);
+    //     auto sit = svec.insert(svec.begin(), 2, svec[svec.size() - 1]);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(begin(), 2, std::move(value)) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(begin(), 2, std::move(value)) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), 2, 7.0);
-        auto sit = svec.insert(svec.begin(), 2, 7.0);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), 2, 7.0);
+    //     auto sit = svec.insert(svec.begin(), 2, 7.0);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(end(), 2, value) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(end(), 2, value) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        value_type value = 7.0;
-        auto vit = vec.insert(vec.end(), 2, value);
-        auto sit = svec.insert(svec.end(), 2, value);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     value_type value = 7.0;
+    //     auto vit = vec.insert(vec.end(), 2, value);
+    //     auto sit = svec.insert(svec.end(), 2, value);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(end(), 2, std::move(value)) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(end(), 2, std::move(value)) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.end(), 2, 7.0);
-        auto sit = svec.insert(svec.end(), 2, 7.0);
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.end(), 2, 7.0);
+    //     auto sit = svec.insert(svec.end(), 2, 7.0);
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(begin(), ...) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(begin(), ...) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.begin(), {1, 2});
-        auto sit = svec.insert(svec.begin(), {1, 2});
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.begin(), {1, 2});
+    //     auto sit = svec.insert(svec.begin(), {1, 2});
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
-    SECTION("insert(end(), ...) [Modifiers]") {
-        vector<value_type> vec = {2, 3};
-        bounded_vector<value_type, N> svec(vec);
+    // SECTION("insert(end(), ...) [Modifiers]") {
+    //     vector<value_type> vec = {2, 3};
+    //     bounded_vector<value_type, N> svec(vec);
 
-        auto vit = vec.insert(vec.end(), {1, 2});
-        auto sit = svec.insert(svec.end(), {1, 2});
-        REQUIRE(vec == svec);
-        REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
-    }
+    //     auto vit = vec.insert(vec.end(), {1, 2});
+    //     auto sit = svec.insert(svec.end(), {1, 2});
+    //     REQUIRE(vec == svec);
+    //     REQUIRE((vit - vec.begin()) == (sit - svec.begin()));
+    // }
 
     // SECTION("emplace(begin(), value) [Modifiers]") {
     //     vector<value_type> vec = {2, 3};
