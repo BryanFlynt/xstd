@@ -12,5 +12,4 @@
 #include "xstd/detail/vector/multi_indexer.hpp"
 #include "xstd/detail/vector/vector_math.hpp"
 
-
 #endif /* INCLUDE_XSTD_VECTOR_HPP_ */
