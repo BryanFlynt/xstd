@@ -36,5 +36,8 @@
 .cproject
 .settings
 
+# VSCode Project files
+.vscode
+
 # My commonly used build diretory
 build
