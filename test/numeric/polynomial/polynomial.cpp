@@ -5,7 +5,7 @@
  *      Author: bflynt
  */
 
-#include "xstd/detail/polynomial/polynomial.hpp"
+#include "xstd/detail/numeric/polynomial/polynomial.hpp"
 
 #include <iostream>
 
